@@ -3,10 +3,6 @@
   <div class="menu" (click)="drawer.open()">
     <mat-icon aria-hidden="false" fontIcon="menu"></mat-icon>
   </div>
-
-
-
-
     <mat-drawer #drawer class="sidenav" mode="over" position="end" disableClose="false">
       <div class="close-sidenav">
         <button (click)="drawer.close()">
@@ -15,9 +11,6 @@
       </div>
       <ng-container *ngTemplateOutlet="filter"></ng-container>
     </mat-drawer>
-
-
-
   <header>Cat finder</header>
   <div class="content">
     <ng-container *ngTemplateOutlet="filter"></ng-container>
@@ -56,10 +49,8 @@
           <mat-divider></mat-divider>
         </div>
       </div>
-      <div class="slider">
-        <div class="results">
-          <span>{{ catInfo.length }} results have been found</span>
-        </div>
+      <div class="results">
+        <span>{{ catInfo.length }} results have been found</span>
       </div>
     </div>
   </div>

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams} from "@angular/common/http";
-import {apiUrl} from "../../constants/api-url.constants";
-import {IBreeds} from "../../Interfaces/breeds.interface";
-import {ICatInfo} from "../../Interfaces/cat-info.interface";
-import {defaults} from "../../constants/default.constants";
-import {BehaviorSubject, Subject} from "rxjs";
+import { HttpClient, HttpParams } from "@angular/common/http";
+import { apiUrl } from "../../constants/api-url.constants";
+import { IBreeds } from "../../Interfaces/breeds.interface";
+import { ICatInfo } from "../../Interfaces/cat-info.interface";
+import { defaults } from "../../constants/default.constants";
+import { BehaviorSubject } from "rxjs";
 
 @Injectable({
   providedIn: 'root'

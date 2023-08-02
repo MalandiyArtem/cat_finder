@@ -1,11 +1,11 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {BreedsService} from "./shared/services/breed/breeds.service";
-import {IBreeds} from "./shared/Interfaces/breeds.interface";
-import {ICatInfo} from "./shared/Interfaces/cat-info.interface";
-import {defaults} from "./shared/constants/default.constants";
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { BreedsService } from "./shared/services/breed/breeds.service";
+import { IBreeds } from "./shared/Interfaces/breeds.interface";
+import { ICatInfo } from "./shared/Interfaces/cat-info.interface";
+import { defaults } from "./shared/constants/default.constants";
 
-interface BreedFormValue {
+interface IFormValue {
   [key: string]: any;
 }
 
@@ -20,8 +20,7 @@ export class AppComponent implements OnInit{
   catInfo: ICatInfo[] = [];
   selectedCheckboxes: string[] = [];
   amountOfImages = defaults.amountOfResults;
-  sliderDisabled = false;
-  resultsSelectedInput = new FormControl(10, [Validators.required, Validators.pattern('^([0-9]|[1-9][0-9]|100)$')]);
+  resultsSelectedInput = new FormControl(10, [Validators.required, Validators.pattern('^([1-9]|[1-9][0-9]|100)$')]);
   isLoading = true;
 
   constructor(
@@ -45,25 +44,26 @@ export class AppComponent implements OnInit{
         return;
       }
       this.catInfo = [];
+      this.isLoading = false;
     });
 
     this._breedService.requestCats(this.amountOfImages);
   }
 
   private createFormControls(data: IBreeds[]): void {
-    const controlsConfig: BreedFormValue = {};
+    const controlsConfig: IFormValue = {};
     for (const item of data) {
       controlsConfig[item.id] = false;
     }
 
-    controlsConfig['result'] = ['10', [Validators.required, Validators.pattern('^([1-9]|[1-9][0-9]|100)$')]];
+    controlsConfig['result'] = this.resultsSelectedInput;
     this.breedsGroup = this._formBuilder.group(controlsConfig);
   }
 
   public submitBreed() {
     this.catInfo = [];
     this.isLoading = true;
-    const formValue = this.breedsGroup.value as BreedFormValue;
+    const formValue = this.breedsGroup.value as IFormValue;
     this.selectedCheckboxes = Object.keys(formValue).filter((key) => formValue[key] === true);
     this._breedService.requestCats(formValue['result'], this.selectedCheckboxes);
   }

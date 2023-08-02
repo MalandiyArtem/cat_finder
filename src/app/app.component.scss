@@ -50,6 +50,10 @@ header {
   }
 }
 
+mat-drawer {
+  z-index: 2;
+}
+
 .close-sidenav {
   margin-bottom: 20px;
 
@@ -64,10 +68,6 @@ header {
 .sidenav {
   padding: 20px;
   min-width: 30vw;
-}
-
-mat-drawer {
-  z-index: 2;
 }
 
 .filter-btns {
@@ -94,6 +94,7 @@ mat-drawer {
 .search {
   button {
     width: auto;
+
     @media screen and (max-width: 992px) {
       width: 100%;
     }
@@ -173,10 +174,10 @@ mat-drawer {
     height: 100%;
   }
 }
+
 .space-filler {
   flex: 1;
 }
-
 
 .list {
   display: flex;
@@ -240,6 +241,5 @@ mat-checkbox {
     @media screen and (max-width: 1200px) {
       font-size: 20px;
     }
-
   }
 }
