@@ -1,22 +1,23 @@
 <div class="wrapper">
   <header>Cat finder</header>
   <div class="content">
-      <form class="filters">
-        <section class="clear">
-          <button mat-stroked-button color="primary">Clear filters</button>
-        </section>
-        <section class="breads" [formGroup]="breedsGroup">
-          <h4>Pick a breed:</h4>
-          <div><mat-checkbox *ngFor="let breed of breeds" [formControlName]='breed.id'>{{ breed.name }}</mat-checkbox></div>
-        </section>
-        <section class="space-filler"></section>
-        <section class="find">
-          <button mat-raised-button color="primary">Find</button>
-        </section>
-      </form>
+    <form class="filters" (ngSubmit)="submitBreed()" [formGroup]="breedsGroup">
+      <section class="clear">
+        <button mat-stroked-button type="reset" color="primary" (click)="clearFilters()">Clear filters</button>
+      </section>
+      <section class="breads">
+        <h4>Pick a breed:</h4>
+        <div>
+          <mat-checkbox *ngFor="let breed of breeds" [formControlName]="breed.id">{{ breed.name }}</mat-checkbox>
+        </div>
+      </section>
+      <section class="space-filler"></section>
+      <section class="find">
+        <button mat-raised-button type="submit" color="primary">Search</button>
+      </section>
+    </form>
     <div class="list">
       <div class="cats">
-
         <div class="cat" *ngFor="let cat of catInfo">
           <mat-card class="example-card" *ngIf="cat.breeds.length !== 0">
             <mat-card-header>
@@ -33,7 +34,6 @@
               <a mat-raised-button [href]="cat.url" target="_blank">Open</a>
             </mat-card-content>
           </mat-card>
-
           <mat-card class="example-card" *ngIf="cat.breeds.length === 0">
             <mat-card-header>
               <mat-card-title-group>
@@ -45,10 +45,8 @@
               <a mat-raised-button [href]="cat.url" target="_blank">Open</a>
             </mat-card-content>
           </mat-card>
-
           <mat-divider></mat-divider>
         </div>
-
       </div>
       <div class="slider">
         <mat-slider
@@ -62,10 +60,14 @@
         >
           <input
             matSliderThumb
+            [value]="amountOfImages"
             (dragEnd)="onChangeAmountOfResults($event.value)"
             [(ngModel)]="amountOfImages" #slider>
         </mat-slider>
-        <h2>Amount of results: {{ amountOfImages }}</h2>
+        <div class="results">
+          <h2>Amount of results selected: {{ amountOfImages }}</h2>
+          <h2>{{ catInfo.length }} results were found</h2>
+        </div>
       </div>
     </div>
   </div>
