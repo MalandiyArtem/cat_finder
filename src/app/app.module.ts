@@ -10,6 +10,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatCardModule} from "@angular/material/card";
 import {HttpClientModule} from "@angular/common/http";
+import {MatSliderModule} from "@angular/material/slider";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {HttpClientModule} from "@angular/common/http";
     MatPaginatorModule,
     MatCardModule,
     MatDividerModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSliderModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
