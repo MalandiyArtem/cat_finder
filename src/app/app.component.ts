@@ -22,6 +22,7 @@ export class AppComponent implements OnInit{
   amountOfImages = defaults.amountOfResults;
   sliderDisabled = false;
   resultsSelectedInput = new FormControl(10, [Validators.required, Validators.pattern('^([0-9]|[1-9][0-9]|100)$')]);
+  isLoading = true;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -37,9 +38,13 @@ export class AppComponent implements OnInit{
     });
 
     this._breedService.getCats().subscribe(catData => {
-      this.sliderDisabled = false;
-      this.catInfo = catData;
-      this._cdr.detectChanges();
+      if (catData.length !== 0) {
+        this.isLoading = false;
+        this.catInfo = catData;
+        this._cdr.detectChanges();
+        return;
+      }
+      this.catInfo = [];
     });
 
     this._breedService.requestCats(this.amountOfImages);
@@ -56,7 +61,8 @@ export class AppComponent implements OnInit{
   }
 
   public submitBreed() {
-    this.sliderDisabled = true;
+    this.catInfo = [];
+    this.isLoading = true;
     const formValue = this.breedsGroup.value as BreedFormValue;
     this.selectedCheckboxes = Object.keys(formValue).filter((key) => formValue[key] === true);
     this._breedService.requestCats(formValue['result'], this.selectedCheckboxes);

@@ -14,6 +14,7 @@ import {MatSliderModule} from "@angular/material/slider";
 import {MatIconModule} from "@angular/material/icon";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatInputModule} from "@angular/material/input";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import {MatInputModule} from "@angular/material/input";
     MatIconModule,
     MatSidenavModule,
     MatInputModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -22,6 +22,9 @@
   <div class="content">
     <ng-container *ngTemplateOutlet="filter"></ng-container>
     <div class="list">
+      <div [ngStyle]="{'display': isLoading === true ? 'block' : 'none'}">
+        <mat-spinner></mat-spinner>
+      </div>
       <div class="cats">
         <div class="cat" *ngFor="let cat of catInfo">
           <mat-card class="card" *ngIf="cat.breeds.length !== 0">
