@@ -7,7 +7,9 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatButtonModule} from "@angular/material/button";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatDividerModule} from "@angular/material/divider";
 import {MatCardModule} from "@angular/material/card";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import {MatCardModule} from "@angular/material/card";
     MatButtonModule,
     MatCheckboxModule,
     MatPaginatorModule,
-    MatCardModule
+    MatCardModule,
+    MatDividerModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,20 +5,9 @@
         <section class="clear">
           <button mat-stroked-button color="primary">Clear filters</button>
         </section>
-        <section class="breads" [formGroup]="breeds">
+        <section class="breads" [formGroup]="breedsGroup">
           <h4>Pick a breed:</h4>
-          <p><mat-checkbox formControlName="q">Abyssinian</mat-checkbox></p>
-          <p><mat-checkbox formControlName="w">Aegean</mat-checkbox></p>
-          <p><mat-checkbox formControlName="e">American Bobtail</mat-checkbox></p>
-          <p><mat-checkbox formControlName="r">American Curl</mat-checkbox></p>
-          <p><mat-checkbox formControlName="t">American Shorthair</mat-checkbox></p>
-          <p><mat-checkbox formControlName="y">American Wirehair</mat-checkbox></p>
-          <p><mat-checkbox formControlName="u">Arabian Mau</mat-checkbox></p>
-          <p><mat-checkbox formControlName="i">Austra;ian Mist</mat-checkbox></p>
-          <p><mat-checkbox formControlName="o">Balinese</mat-checkbox></p>
-          <p><mat-checkbox formControlName="p">Bambino</mat-checkbox></p>
-          <p><mat-checkbox formControlName="a">Bengal</mat-checkbox></p>
-          <p><mat-checkbox formControlName="s">Birman</mat-checkbox></p>
+          <div><mat-checkbox *ngFor="let breed of breeds" [formControlName]='breed.id'>{{ breed.name }}</mat-checkbox></div>
         </section>
         <section class="space-filler"></section>
         <section class="find">
