@@ -1,25 +1,30 @@
+<mat-drawer-container class="sidenav-container" autosize>
 <div class="wrapper">
+  <div class="menu" (click)="drawer.open()">
+    <mat-icon aria-hidden="false" fontIcon="menu"></mat-icon>
+  </div>
+
+
+
+
+    <mat-drawer #drawer class="sidenav" mode="over" position="end" disableClose="false">
+      <div class="close-sidenav">
+        <button (click)="drawer.close()">
+          <mat-icon aria-hidden="false" fontIcon="close"></mat-icon>
+        </button>
+      </div>
+      <ng-container *ngTemplateOutlet="filter"></ng-container>
+    </mat-drawer>
+
+
+
   <header>Cat finder</header>
   <div class="content">
-    <form class="filters" (ngSubmit)="submitBreed()" [formGroup]="breedsGroup">
-      <section class="clear">
-        <button mat-stroked-button type="reset" color="primary" (click)="clearFilters()">Clear filters</button>
-      </section>
-      <section class="breads">
-        <h4>Pick a breed:</h4>
-        <div>
-          <mat-checkbox *ngFor="let breed of breeds" [formControlName]="breed.id">{{ breed.name }}</mat-checkbox>
-        </div>
-      </section>
-      <section class="space-filler"></section>
-      <section class="find">
-        <button mat-raised-button type="submit" color="primary">Search</button>
-      </section>
-    </form>
+    <ng-container *ngTemplateOutlet="filter"></ng-container>
     <div class="list">
       <div class="cats">
         <div class="cat" *ngFor="let cat of catInfo">
-          <mat-card class="example-card" *ngIf="cat.breeds.length !== 0">
+          <mat-card class="card" *ngIf="cat.breeds.length !== 0">
             <mat-card-header>
               <mat-card-title-group>
                 <mat-card-title>{{ cat.breeds[0].name }}</mat-card-title>
@@ -34,7 +39,7 @@
               <a mat-raised-button [href]="cat.url" target="_blank">Open</a>
             </mat-card-content>
           </mat-card>
-          <mat-card class="example-card" *ngIf="cat.breeds.length === 0">
+          <mat-card class="card" *ngIf="cat.breeds.length === 0">
             <mat-card-header>
               <mat-card-title-group>
                 <mat-card-title>No breed</mat-card-title>
@@ -49,26 +54,41 @@
         </div>
       </div>
       <div class="slider">
-        <mat-slider
-          class="example-margin"
-          [max]="100"
-          [min]="0"
-          [step]="1"
-          [discrete]="true"
-          [showTickMarks]="false"
-          [disabled]="sliderDisabled"
-        >
-          <input
-            matSliderThumb
-            [value]="amountOfImages"
-            (dragEnd)="onChangeAmountOfResults($event.value)"
-            [(ngModel)]="amountOfImages" #slider>
-        </mat-slider>
         <div class="results">
-          <h2>Amount of results selected: {{ amountOfImages }}</h2>
-          <h2>{{ catInfo.length }} results were found</h2>
+          <span>{{ catInfo.length }} results have been found</span>
         </div>
       </div>
     </div>
   </div>
 </div>
+</mat-drawer-container>
+
+<ng-template #filter>
+  <form class="filters" (ngSubmit)="submitBreed()" [formGroup]="breedsGroup">
+    <div class="filter-btns">
+      <section class="clear">
+        <button mat-stroked-button type="reset" color="primary" (click)="clearFilters()">Clear filters</button>
+      </section>
+      <div>
+        <mat-form-field class="pick-results">
+          <mat-label>Enter amount of results</mat-label>
+          <input matInput formControlName="result" >
+          <mat-error *ngIf="breedsGroup.get('result')?.untouched || breedsGroup.get('result')?.invalid">
+            {{ breedsGroup.get('result')?.hasError('required') ? 'This filed is required.' :
+            breedsGroup.get('result')?.hasError('pattern') ? 'Numbers from 1 to 100.' : ''}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <section class="breads">
+      <h4>Pick a breed:</h4>
+      <div>
+        <mat-checkbox *ngFor="let breed of breeds" [formControlName]="breed.id">{{ breed.name }}</mat-checkbox>
+      </div>
+    </section>
+    <section class="space-filler"></section>
+    <section class="search">
+      <button mat-raised-button type="submit" color="primary" [disabled]="breedsGroup.invalid">Search</button>
+    </section>
+  </form>
+</ng-template>

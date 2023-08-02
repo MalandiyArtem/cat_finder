@@ -11,6 +11,9 @@ import {MatDividerModule} from "@angular/material/divider";
 import {MatCardModule} from "@angular/material/card";
 import {HttpClientModule} from "@angular/common/http";
 import {MatSliderModule} from "@angular/material/slider";
+import {MatIconModule} from "@angular/material/icon";
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -28,6 +31,9 @@ import {MatSliderModule} from "@angular/material/slider";
     MatDividerModule,
     HttpClientModule,
     MatSliderModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -13,8 +13,95 @@ header {
   padding: 40px 0;
 }
 
+.menu {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 20px;
+
+  mat-icon {
+    transform: scale(2);
+  }
+
+  @media screen and (max-width: 992px) {
+    display: block;
+  }
+}
+
+
+.sidenav-container {
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+
+  &::ng-deep {
+    .mat-drawer-backdrop {
+      z-index: 1;
+    }
+
+    .mat-drawer-inner-container {
+      overflow: initial;
+    }
+
+    .mat-drawer-backdrop.mat-drawer-shown  {
+      background: transparent;
+    }
+  }
+}
+
+.close-sidenav {
+  margin-bottom: 20px;
+
+  button {
+    outline: none;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+  }
+}
+
+.sidenav {
+  padding: 20px;
+  min-width: 30vw;
+}
+
+mat-drawer {
+  z-index: 2;
+}
+
+.filter-btns {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+
+  div {
+    width: 100%;
+    margin: 5px;
+
+    button {
+      width: 100%;
+    }
+
+    mat-form-field {
+      width: 100%;
+    }
+  }
+}
+
+.search {
+  button {
+    width: auto;
+    @media screen and (max-width: 992px) {
+      width: 100%;
+    }
+  }
+}
+
 .content{
-  width: 50vw;
+  width: 70vw;
   height: 70vh;
   display: flex;
   padding: 30px;
@@ -25,13 +112,26 @@ header {
   border-top: 1px solid rgba(128, 128, 128, 0.5);
   border-radius: 4px;
 
+  @media screen and (max-width: 1400px) {
+    width: 80vw;
+  }
+
+  @media screen and (max-width: 992px) {
+    width: 100%;
+  }
+
   .filters {
+    display: block;
     width: 100%;
     max-width: 200px;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media screen and (max-width: 992px) {
+      display: none;
+    }
 
     section {
       padding: 10px;
@@ -110,7 +210,7 @@ header {
   }
 }
 
-.example-card {
+.card {
   margin: 10px 5px;
 }
 
@@ -118,20 +218,26 @@ mat-checkbox {
   display: block;
 }
 
-mat-slider {
-  width: 100%;
-}
+.results {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 
-.slider {
-  .results {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  span {
+    margin: 12px;
+    padding: 10px;
+    display: block;
+    font-weight: bold;
+    font-size: 28px;
 
-    h2 {
-      margin: 12px;
-      padding: 10px;
+    @media screen and (max-width: 1400px) {
+      font-size: 25px;
     }
+
+    @media screen and (max-width: 1200px) {
+      font-size: 20px;
+    }
+
   }
 }
